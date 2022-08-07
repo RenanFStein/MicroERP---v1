@@ -16,8 +16,10 @@
                     <div class="card border-warning  mb-3 shadow-lg ">
                         <div class="card-header bg-transparent border-warning ">Produto 1</div>
                         <div class="card-body ">
-                            <span class="card-text">Some quick example text to build on the card title and make up the bulk
-                                of the card's content.</span>
+                            <p class="card-text">Descrição:</p>
+                            <p class="card-text">Valor:</p>
+                            <p class="card-text">Quantidade:</p>
+                            <p class="card-text">Total:</p>
                         </div>
                         <div class="card-footer bg-transparent border-warning">
                             
@@ -40,12 +42,15 @@
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Cadastro de Produto</h5>
+                <h5 class="modal-title" id="exampleModalLabel" >Cadastro de Produto</h5>
             </div>
             <div class="modal-body">
                 <input type="text" class="form-control mt-2" id="inputCidade4" placeholder="Nome">
                 <input type="text" class="form-control mt-2" id="inputCidade4" placeholder="Descrição">
-                <input type="text" class="form-control mt-2" id="inputCidade4" placeholder="Estoque">
+                <input type="number" class="form-control mt-2" id="inputCidade4" placeholder="Valor">
+                <input type="number" class="form-control mt-2" id="inputCidade4" placeholder="Quantidade">
+                <input type="number" class="form-control mt-2" id="inputCidade4" placeholder="Total">
+                
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-outline-dark rounded-5" data-bs-dismiss="modal"><i class="fa-solid fa-xmark"></i> Fechar</button>
@@ -66,7 +71,9 @@
             <div class="modal-body">
                 <input type="text" class="form-control mt-2" id="inputCidade4" placeholder="Nome">
                 <input type="text" class="form-control mt-2" id="inputCidade4" placeholder="Descrição">
-                <input type="number" class="form-control mt-2" id="inputCidade4" placeholder="Estoque">
+                <input type="number" class="form-control mt-2" id="inputCidade4" placeholder="Valor">
+                <input type="number" class="form-control mt-2" id="inputCidade4" placeholder="Quantidade">
+                <input type="number" class="form-control mt-2" id="inputCidade4" placeholder="Total">
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-outline-dark rounded-5" data-bs-dismiss="modal"><i class="fa-solid fa-xmark"></i> Fechar</button>

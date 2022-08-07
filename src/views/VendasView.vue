@@ -47,12 +47,12 @@
                 <div class="modal-dialog modal-dialog-centered">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Cadastro de Produto</h5>
+                            <h5 class="modal-title" id="exampleModalLabel">Vendas</h5>
                         </div>
                         <div class="modal-body">
                             <div class="row mt-2">
                                 <div class="col-lg-12 col-md-12 col-sm-12 col-12 mt-1">
-                                    <input type="text" class="form-control mt-2" placeholder="Fornecedor">
+                                    <input type="text" class="form-control mt-2" placeholder="Cliente">
                                 </div>
                             </div>
                             <div class="row mt-2">
@@ -93,7 +93,7 @@
                        <div class="modal-body">
                             <div class="row mt-2">
                                 <div class="col-lg-12 col-md-12 col-sm-12 col-12 mt-1">
-                                    <input type="text" class="form-control mt-2" placeholder="Fornecedor">
+                                    <input type="text" class="form-control mt-2" placeholder="Cliente">
                                 </div>
                             </div>
                             <div class="row mt-2">

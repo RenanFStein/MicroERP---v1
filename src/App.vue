@@ -5,8 +5,8 @@
       <div class="one menu">
         <nav class="wrap">
           <div>
-            <RouterLink  to="/">
-              <i class="fa-solid fa-house-user icons"/>              
+            <RouterLink  to="/" title="Home">
+              <i class="fa-solid fa-house-user icons" />              
             </RouterLink>
             <RouterLink to="/dashboard">
               <i class="fa-solid fa-chart-pie icons" />     
@@ -64,9 +64,11 @@ export default{
 
 
 <style scoped>
+
 *, *::before, *::after {
   box-sizing:content-box
 }
+
 .router-link-active > i{
   padding: 10px ;
   margin: 0px;
@@ -99,13 +101,15 @@ export default{
   font-size: 16px;
   
 }
+@media (min-width: 768px){
 .icons:hover{
+  padding: 10px ;
+  margin: 0px;
   color: #203764;
   background-color: #e3e4e9;
-  border-radius: 10px;
-        
+  border-radius: 10px 0px 0px 10px;      
 }
-
+}
 
 .wrap{
   display: flex;
