@@ -124,7 +124,7 @@ export default{
 .grid{
   display: grid;
   height: 100vh;
-  grid-template-columns: 0.25fr 9.75fr;
+  grid-template-columns: 40px 9.75fr;
   grid-template-areas:
 		"one two"
 		;
