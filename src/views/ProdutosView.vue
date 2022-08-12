@@ -1,7 +1,7 @@
 <template>
     <div class="mt-2">
-        <h1 class="text-center">Produtos</h1>
-        <div class="container ">
+        <h1 class="text-center">Produtos e Estoque</h1>
+        <div class="container " >
             <div class=" d-flex flex-wrap justify-content-between align-self-end ">
                 <input class="form-control w-50 rounded-3" type="text" id="txtBusca" placeholder="Buscar..."/>
                 
@@ -12,14 +12,11 @@
                 </button>
             </div>
             <div class="row ">
-                <div class="col-lg-3 col-md-4 col-sm-6 mt-2 ">
+                <div class="col-lg-3 col-md-4 col-sm-6 mt-2 " v-for="itens in produtos" :key="itens.id" >
                     <div class="card border-warning  mb-3 shadow-lg ">
-                        <div class="card-header bg-transparent border-warning ">Produto 1</div>
+                        <div class="card-header bg-transparent border-warning ">Cod.: {{itens.id}} - {{itens.nomeProduto}}</div>
                         <div class="card-body ">
-                            <p class="card-text">Descrição:</p>
-                            <p class="card-text">Valor:</p>
-                            <p class="card-text">Quantidade:</p>
-                            <p class="card-text">Total:</p>
+                            <p class="card-text">Descrição: {{itens.descricao_produto}}</p>                          
                         </div>
                         <div class="card-footer bg-transparent border-warning">
                             
@@ -90,7 +87,41 @@
 
 
 <script>
+ 
+    export default{
+    data(){
+        return{
+    
+            produtos: {              
+                    nomeProduto: '', 
+                    descricao_produto:'',                                   
+                    },
+            estoques:{
+                    produto: '', 
+                    quantidade: '', 
+                    valor: '', 
+       
+            }           
+            }
+    },  
+    async created () {
+        
+            const response = await fetch("https://api-microerp.herokuapp.com/api/Produtos/")
+            let req = await response.json()
+            this.produtos = req 
 
+            const response_estoque = await fetch("https://api-microerp.herokuapp.com/api/Estoques/")
+            let req_estoque = await response_estoque.json()
+            this.estoques = req_estoque 
+            
+
+          
+        
+           
+        }, 
+
+             
+    }
 </script>
 
 <style scoped>
