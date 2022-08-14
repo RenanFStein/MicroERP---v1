@@ -22,7 +22,7 @@
                             <p class="card-text" v-else>Nome: {{caixa.venda[0][0].nome_cliente}}</p>
                             
                             <p class="card-text" v-if="caixa.venda == false" >Valor: {{formatPrice(caixa.compra[1][0].valor * caixa.compra[1][0].quantidade)}}</p>
-                            <p class="card-text" v-else>CNPJ: {{(formatPrice(Math.abs(caixa.venda[1][0].valor * caixa.venda[1][0].quantidade)))}} </p>
+                            <p class="card-text" v-else>Valor: {{(formatPrice(Math.abs(caixa.venda[1][0].valor * caixa.venda[1][0].quantidade)))}} </p>
                                                       
                         </div>
                         <div class="card-footer bg-transparent border-warning">
@@ -30,11 +30,42 @@
                             <div class=" d-flex flex-wrap justify-content-between align-items-center">
                                 <p class="card-text" v-if="caixa.status == false">Status: Em aberto <i style="color:red" class="fa-solid fa-triangle-exclamation"></i></p>
                                 <p class="card-text" v-else>Status: Pago <i style="color:green" class="fa-solid fa-check"></i></p>                                                                            
-         
-                               
+                            <button type="submit" class="btn btn-sm btn-outline-success p-1 rounded-5" data-bs-toggle="modal" :data-bs-target="'#editarCaixa'+caixa.id">
+                                <i class="fa-solid fa-pen-to-square p-2"></i>                                                                        
+                            </button>  
+                    
+                            </div>
+                        </div>
+                        <!-- Modal Editar Fornecedor -->
+                    <div class="modal fade" :id="'editarCaixa'+caixa.id" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+                        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Realizar Baixa</h5>
+                                </div>
+                                <form action="/" method="PUT">
+                                <div class="modal-body ">
+                                  <div class="form-check form-switch">
+                                    <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" checked>
+                                    <label class="form-check-label" for="flexSwitchCheckChecked" v-if="caixa.venda == false" >Compra paga com sucesso</label>
+                                    <label class="form-check-label" for="flexSwitchCheckChecked" v-else>Venda recebida com sucesso</label>
+                                </div>
+                                                                                              
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-outline-dark rounded-5 mb-2 mx-1 px-3" data-bs-dismiss="modal"><i
+                                            class="fa-solid fa-xmark"></i> Fechar</button>
+                                    <button type="submit" @click.prevent="updateCaixa()" data-bs-dismiss="modal" class="btn btn-outline-success rounded-5 mb-2 mx-1 px-3"><i
+                                            class="fa-solid fa-cloud"></i> Salvar</button>
+                                </div>
+                                </form>
                             </div>
                         </div>
                     </div>
+                    <!-- Fim Modal Editar Produto-->
+                    </div>
+                    
                 </div>                
             </div>
 
