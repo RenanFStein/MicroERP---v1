@@ -11,7 +11,7 @@
                             <i class="fa-solid fa-circle-plus p-1" />
                             Fornecedor
                 </button>
-                            <!-- Modal Novo Fornecedor -->
+                <!-- Modal Novo Fornecedor -->
                 <div class="modal fade" id="novoFornecedor" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
                     aria-labelledby="staticBackdropLabel" aria-hidden="true">
                     <div class="modal-dialog modal-dialog-centered">
@@ -89,7 +89,7 @@
                                 <div class="modal-header">
                                     <h5 class="modal-title" id="exampleModalLabel">Editar Fornecedor</h5>
                                 </div>
-                                <form action="/" method="POST">
+                                <form action="/" method="PUT">
                                 <div class="modal-body ">
                                     <input type="text" class="form-control mt-2"  v-model="cadastro.nome_fornecedor" placeholder="Empresa">
                                                                                       
@@ -180,9 +180,7 @@
         
             const response = await fetch("https://api-microerp.herokuapp.com/api/Fornecedor/")
             let req = await response.json()
-            this.fornecedor = req
-           
-                
+            this.fornecedor = req                  
         },  
 
     methods:{   
