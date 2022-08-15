@@ -15,8 +15,8 @@
                     <div class="card border-warning  mb-3  shadow">
                         <div class="card-body ">
                             
-                            <p class="card-text" v-if="caixa.venda == false" >Cod.:{{caixa.id}} | Entrada </p>
-                            <p class="card-text" v-else>Cod.:{{caixa.id}} | Saida </p>
+                            <p class="card-text" v-if="caixa.venda == false" >Cod.:{{caixa.id}} | Compra </p>
+                            <p class="card-text" v-else>Cod.:{{caixa.id}} | Venda </p>
                             
                             <p class="card-text" v-if="caixa.venda == false" >Nome: {{caixa.compra[0][0].nome_fornecedor}}</p>
                             <p class="card-text" v-else>Nome: {{caixa.venda[0][0].nome_cliente}}</p>
@@ -28,8 +28,18 @@
                         <div class="card-footer bg-transparent border-warning">
                             
                             <div class=" d-flex flex-wrap justify-content-between align-items-center">
-                                <p class="card-text" v-if="caixa.status == false">Status: Em aberto <i style="color:red" class="fa-solid fa-triangle-exclamation"></i></p>
-                                <p class="card-text" v-else>Status: Pago <i style="color:green" class="fa-solid fa-check"></i></p>                                                                            
+                                <p class="card-text" v-if="caixa.status == false">
+                                    Status: Em aberto 
+                                    <i style="color:red" class="fa-solid fa-triangle-exclamation"></i>
+                                </p>
+                                <p class="card-text" v-if="caixa.status == true && caixa.venda == false">
+                                    Status: Pago 
+                                    <i style="color:green" class="fa-solid fa-check"></i>
+                                </p>   
+                                <p class="card-text" v-if="caixa.status == true && caixa.compra == false">
+                                    Status: Recebido 
+                                    <i style="color:green" class="fa-solid fa-check"></i>
+                                </p>                                                                                
                             <button type="submit" class="btn btn-sm btn-outline-success p-1 rounded-5" data-bs-toggle="modal" :data-bs-target="'#editarCaixa'+caixa.id">
                                 <i class="fa-solid fa-pen-to-square p-2"></i>                                                                        
                             </button>  
@@ -51,8 +61,8 @@
                                             type="checkbox" 
                                             id="flexSwitchCheckChecked" 
                                             v-model="caixa.status">
-                                    <label class="form-check-label" :value="caixa.status" for="flexSwitchCheckChecked" v-if="caixa.venda == false" >Compra paga com sucesso</label>
-                                    <label class="form-check-label" :value="caixa.status" for="flexSwitchCheckChecked" v-else>Venda recebida com sucesso</label>
+                                    <label class="form-check-label"  v-if="caixa.venda == false" >Compra paga com sucesso</label>
+                                    <label class="form-check-label"  v-else>Venda recebida com sucesso</label>
                                 </div>
                                                                                               
                                 </div>
