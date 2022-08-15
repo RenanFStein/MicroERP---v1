@@ -35,14 +35,14 @@
                             </div>
                         </div>
                     </div>
-                    <!-- Modal Editar Produto -->
+                    <!-- Modal Editar Compra -->
                     <div class="modal fade" :id="'editarCompra'+cadastro.id" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
                         aria-labelledby="staticBackdropLabel" aria-hidden="true">
                         <div class="modal-dialog modal-dialog-centered">
                             <form action="#" method="PUT">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel">Editar Produto</h5>
+                                    <h5 class="modal-title" id="exampleModalLabel">Editar Compra</h5>
                                 </div>                                
                                 <div class="modal-body">
                                     <div class="row mt-2">
@@ -99,18 +99,18 @@
                             </form>
                         </div>
                     </div>
-                    <!-- Fim Modal Editar Produto-->
+                    <!-- Fim Modal Editar Compra-->
                 </div>                
             </div>         
             </div>
-            <!-- Modal Novo Produto -->
+            <!-- Modal Nova Compra -->
             <div class="modal fade" id="novoProduto" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
                 aria-labelledby="staticBackdropLabel" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered">
                     <form method="POST" action="#">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Cadastro de Produto</h5>
+                            <h5 class="modal-title" id="exampleModalLabel">Realizar Compra</h5>
                         </div>
                         <div class="modal-body">
                             <div class="row mt-2">
@@ -153,7 +153,7 @@
                     </form>
                 </div>
             </div>
-            <!-- Fim Modal Novo Produto-->           
+            <!-- Fim Modal Novo Compra-->           
         </div>
 
 </template>
