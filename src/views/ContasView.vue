@@ -47,16 +47,19 @@
                                 <form action="/" method="PUT">
                                 <div class="modal-body ">
                                   <div class="form-check form-switch">
-                                    <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" checked>
-                                    <label class="form-check-label" for="flexSwitchCheckChecked" v-if="caixa.venda == false" >Compra paga com sucesso</label>
-                                    <label class="form-check-label" for="flexSwitchCheckChecked" v-else>Venda recebida com sucesso</label>
+                                    <input class="form-check-input"  
+                                            type="checkbox" 
+                                            id="flexSwitchCheckChecked" 
+                                            v-model="caixa.status">
+                                    <label class="form-check-label" :value="caixa.status" for="flexSwitchCheckChecked" v-if="caixa.venda == false" >Compra paga com sucesso</label>
+                                    <label class="form-check-label" :value="caixa.status" for="flexSwitchCheckChecked" v-else>Venda recebida com sucesso</label>
                                 </div>
                                                                                               
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-outline-dark rounded-5 mb-2 mx-1 px-3" data-bs-dismiss="modal"><i
                                             class="fa-solid fa-xmark"></i> Fechar</button>
-                                    <button type="submit" @click.prevent="updateCaixa()" data-bs-dismiss="modal" class="btn btn-outline-success rounded-5 mb-2 mx-1 px-3"><i
+                                    <button type="submit" @click.prevent="updateConta(caixa)" data-bs-dismiss="modal" class="btn btn-outline-success rounded-5 mb-2 mx-1 px-3"><i
                                             class="fa-solid fa-cloud"></i> Salvar</button>
                                 </div>
                                 </form>
@@ -86,7 +89,6 @@
     data(){
         return{
             movimentacao:'',
-    
             }            
             
     },  
@@ -98,6 +100,21 @@
            
         },  
     methods:{
+        async updateConta(status) { 
+            console.log(status)
+            const requestOptions = {
+                    method: "PUT",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(status)
+                
+                };
+
+            const response = await fetch("https://api-microerp.herokuapp.com/api/Caixa/"+status.id+"/", requestOptions);                    
+            const data = await response.json();
+            console.log(response)
+            console.log(data)
+        },
+
         
         formatPrice(value) {
                 let val = (value/1).toFixed(2).replace('.', ',')
