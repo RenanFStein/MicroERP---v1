@@ -106,8 +106,10 @@
         
             const response = await fetch("https://api-microerp.herokuapp.com/api/Caixa/")
             let req = await response.json()
-            this.movimentacao = req  
-           
+            this.movimentacao = req.sort(function(a, b) {                  
+                                return b.id - a.id ;
+                                });            
+            
         },  
     methods:{
         async updateConta(status) { 

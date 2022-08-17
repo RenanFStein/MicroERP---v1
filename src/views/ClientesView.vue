@@ -181,7 +181,10 @@
         
             const response = await fetch("https://api-microerp.herokuapp.com/api/Clientes/")
             let req = await response.json()
-            this.cliente = req
+            this.cliente = req.sort(function(a, b) {                  
+                                return b.id - a.id ;
+                                });
+             
            
                 
         },  

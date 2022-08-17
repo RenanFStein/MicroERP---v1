@@ -15,6 +15,7 @@
                 <div class="col-lg-3 col-md-4 col-sm-6 mt-1 " v-for="cadastro in compras" :key="cadastro.id">
                     <div class="card border-warning  mb-3  shadow">
                         <div class="card-body">
+                            <p class="card-text">Compra:{{cadastro.id}}</p>
                             <p class="card-text">Fornecedor:{{cadastro.nome_fornecedor.fornecedor}}</p>
                             <p class="card-text">Produto: {{cadastro.produto.produto}}</p>
                             <p class="card-text">Valor: {{formatPrice(cadastro.valor)}}</p>
@@ -191,16 +192,19 @@
     async created () {        
             const response = await fetch("https://api-microerp.herokuapp.com/api/Compras/")
             let req = await response.json()        
-            this.compras = req 
+            this.compras = req.sort(function(a, b) {                  
+                                return b.id - a.id ;
+                                });
+              
 
             const fornecedor = await fetch("https://api-microerp.herokuapp.com/api/Fornecedor/")
             let reqfornecedor = await fornecedor.json()        
-            this.fornecedores = reqfornecedor 
+            this.fornecedores = reqfornecedor              
 
             const estoque = await fetch("https://api-microerp.herokuapp.com/api/Produtos/")
             let reqestoque = await estoque.json()        
             this.produtos = reqestoque
-            console.log()
+         
     },
     methods:{
   

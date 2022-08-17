@@ -15,6 +15,7 @@
                 <div class="col-lg-3 col-md-4 col-sm-6 mt-1 " v-for="cadastro in vendas" :key="cadastro.id">
                     <div class="card border-warning  mb-3  shadow">
                         <div class="card-body">
+                            <p class="card-text">Venda:{{cadastro.id}}</p>
                             <p class="card-text">Cliente:{{cadastro.nome_cliente.cliente}}</p>
                             <p class="card-text">Produto: {{cadastro.produto.produto}}</p>
                             <p class="card-text">Valor: {{formatPrice(cadastro.valor)}}</p>
@@ -67,19 +68,20 @@
                                                     :data-idproduto="produto.id"
                                                     :key="produto.id" selected>
                                                     {{produto.nomeProduto}}
-                                            <input type="text"  class="form-control" v-model="produto.id"> 
+                                           
                                             </option>
                                                                           
                                             </select> 
                                         </div>
                                         <div class="col-lg-4 col-md-4 col-sm-4 col-5 mt-1" >
                                             <input type="number" class="form-control mt-2" placeholder="Valor" v-model="cadastro.valor">
+                                      
                                         </div>
                                         <div class="col-lg-5 col-md-5 col-sm-5 col-5 mt-1">
-                                            <input type="number" class="form-control mt-2"  placeholder="Quantidade" :value="Math.abs(cadastro.quantidade)">
+                                            <input type="number" class="form-control mt-2"  placeholder="Quantidade" v-model="cadastro.quantidade">
                                         </div>
                                         <div class="col-lg-7 col-md-7 col-sm-7 col-7 mt-1">
-                                        <input type="number" class="form-control mt-2" disabled  placeholder="Total" :value="Math.abs(cadastro.valor * cadastro.quantidade)">
+                                        <input type="number" class="form-control mt-2" disabled  placeholder="Total" :value="cadastro.valor * cadastro.quantidade">
                                         </div>
                                     </div>                                    
                                 </div>
@@ -134,8 +136,10 @@
                                     <input type="number" class="form-control mt-2" placeholder="Valor" v-model="cadastroVendas.estoque.valor">
                                     
                                 </div>
+                               
                                 <div class="col-lg-5 col-md-5 col-sm-5 col-5 mt-1">
                                     <input type="number" class="form-control mt-2"  placeholder="Quantidade" v-model="cadastroVendas.estoque.quantidade">
+                                   
                                 </div>
                                 <div class="col-lg-7 col-md-7 col-sm-7 col-7 mt-1">
                                    <input type="number" class="form-control mt-2" disabled placeholder="Total" :value="(cadastroVendas.estoque.valor * cadastroVendas.estoque.quantidade)">
@@ -153,7 +157,8 @@
                     </form>
                 </div>
             </div>
-            <!-- Fim Modal Nova Venda-->           
+            <!-- Fim Modal Nova Venda-->   
+              
         </div>
 
 </template>
@@ -190,7 +195,9 @@
     async created () {        
             const response = await fetch("https://api-microerp.herokuapp.com/api/Vendas/")
             let req = await response.json()        
-            this.vendas = req 
+            this.vendas = req.sort(function(a, b) {                  
+                                return b.id - a.id ;
+                                }); 
 
             const cliente = await fetch("https://api-microerp.herokuapp.com/api/Clientes/")
             let reqcliente = await cliente.json()        
