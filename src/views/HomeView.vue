@@ -17,6 +17,7 @@
                 <div class="col-lg-8 col-md-8 col-sm-7 mt-1">
                     <input type="text" :disabled="disabled == 0" class="form-control" id="inputEmail4" 
                     placeholder="Empresa" v-model="empresa.nome_empresa">
+                  
                 </div>
                 <div class="col-lg-4 col-md-4 col-sm-5 mt-1">
                 
@@ -65,7 +66,7 @@
                 </div>     
             </div>             
         </div>  
-
+        {{empresa}}
     </div>
 
 </template>
@@ -98,8 +99,7 @@
         
             const response = await fetch("https://api-microerp.herokuapp.com/api/Empresa/")
             let req = await response.json()
-
-                 
+            this.empresa = req[0]                
            
         },  
                                                                                         
