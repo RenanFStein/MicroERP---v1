@@ -17,7 +17,7 @@
                         :data-bs-target="'#editarCompra' + cadastro.id">
                         <i class="fa-solid fa-pen-to-square p-2"></i>
                     </button>
-
+            
                 </div>
             </div>
         </div>
@@ -53,11 +53,11 @@
                                     </select>
                                 </div>
                                 <div class="col-lg-4 col-md-4 col-sm-4 col-5 mt-1">
-                                    <input type="number" class="form-control mt-2" placeholder="Valor"
+                                    <input type="number" class="form-control mt-2" min="1" placeholder="Valor"
                                         v-model="cadastro.valor">
                                 </div>
                                 <div class="col-lg-5 col-md-5 col-sm-5 col-5 mt-1">
-                                    <input type="number" class="form-control mt-2" placeholder="Quantidade"
+                                    <input type="number" class="form-control mt-2" min="1" placeholder="Quantidade"
                                         v-model="cadastro.quantidade">
                                 </div>
                                 <div class="col-lg-7 col-md-7 col-sm-7 col-7 mt-1">

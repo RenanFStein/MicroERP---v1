@@ -81,6 +81,7 @@
                     type="number"
                     class="form-control mt-2"
                     placeholder="Valor"
+                    min="1"
                     v-model="cadastroCompras.estoque.valor"
                   />
                 </div>
@@ -89,6 +90,7 @@
                     type="number"
                     class="form-control mt-2"
                     placeholder="Quantidade"
+                    min="1"
                     v-model="cadastroCompras.estoque.quantidade"
                   />
                 </div>
