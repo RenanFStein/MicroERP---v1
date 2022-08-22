@@ -74,11 +74,11 @@
                                             </select> 
                                         </div>
                                         <div class="col-lg-4 col-md-4 col-sm-4 col-5 mt-1" >
-                                            <input type="number" class="form-control mt-2" placeholder="Valor" v-model="cadastro.valor">
+                                            <input type="number" class="form-control mt-2" placeholder="Valor" min="1" v-model="cadastro.valor">
                                       
                                         </div>
                                         <div class="col-lg-5 col-md-5 col-sm-5 col-5 mt-1">
-                                            <input type="number" class="form-control mt-2"  placeholder="Quantidade" v-model="cadastro.quantidade">
+                                            <input type="number" class="form-control mt-2"  placeholder="Quantidade" min="1" v-model="cadastro.quantidade">
                                         </div>
                                         <div class="col-lg-7 col-md-7 col-sm-7 col-7 mt-1">
                                         <input type="number" class="form-control mt-2" disabled  placeholder="Total" :value="cadastro.valor * cadastro.quantidade">
@@ -133,13 +133,12 @@
                                     </select>                                    
                                 </div>
                                 <div class="col-lg-4 col-md-4 col-sm-4 col-5 mt-1">
-                                    <input type="number" class="form-control mt-2" placeholder="Valor" v-model="cadastroVendas.estoque.valor">
+                                    <input type="number" class="form-control mt-2" placeholder="Valor" min="1" v-model="cadastroVendas.estoque.valor">
                                     
                                 </div>
                                
                                 <div class="col-lg-5 col-md-5 col-sm-5 col-5 mt-1">
-                                    <input type="number" class="form-control mt-2"  placeholder="Quantidade" v-model="cadastroVendas.estoque.quantidade">
-                                   
+                                    <input type="number" class="form-control mt-2"  placeholder="Quantidade" min="1" v-model="cadastroVendas.estoque.quantidade" >                                
                                 </div>
                                 <div class="col-lg-7 col-md-7 col-sm-7 col-7 mt-1">
                                    <input type="number" class="form-control mt-2" disabled placeholder="Total" :value="(cadastroVendas.estoque.valor * cadastroVendas.estoque.quantidade)">

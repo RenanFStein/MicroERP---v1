@@ -98,9 +98,7 @@
         
             const response = await fetch("https://api-microerp.herokuapp.com/api/Empresa/")
             let req = await response.json()
-            this.empresa = req[0].sort(function(a, b) {                  
-                                return b.id - a.id ;
-                                });
+
                  
            
         },  

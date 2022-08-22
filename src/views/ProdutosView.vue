@@ -11,8 +11,9 @@
                             Produto
                 </button>
             </div>
+
             <div class="row ">
-                <div class="col-lg-3 col-md-4 col-sm-6 mt-2 " v-for="itens in produtos" :key="itens.id">
+                <div class="col-lg-3 col-md-4 col-sm-6 mt-2 " v-for="itens in listProduct" :key="itens.id">
                             
                     <div class="card border-warning  mb-3 shadow-lg" >
                         <div class="card-header bg-transparent border-warning ">Cod.: {{itens.id}} - {{itens.nomeProduto}}</div>
@@ -92,31 +93,23 @@
     data(){
         return{
     
-            produtos: {              
-                    nomeProduto: '', 
-                    descricao_produto:'',
-                    quantidade_estoque:'',
-                    custo_medio:'',
-                    valor_estoque:'',                                   
-                    },
-            cadastro_produtos: {              
-                    nomeProduto: '', 
-                    descricao_produto:'',
-                                             
-                    },
+            produtos: {},
+            cadastro_produtos: {},
 
             }
     },  
-    async created () {
-        
+    async created () {        
             const response = await fetch("https://api-microerp.herokuapp.com/api/Produtos/")
             let req = await response.json()
             this.produtos = req.sort(function(a, b) {                  
                                 return b.id - a.id ;
                                 });
-              
-           
         }, 
+    computed:{
+        listProduct(){
+            return this.produtos
+        }
+    },
     methods:{ 
         async novoProduto() {  
 
@@ -129,10 +122,12 @@
             const response = await fetch("https://api-microerp.herokuapp.com/api/Produtos/", requestOptions);                    
             const data = await response.json();  
             if (response.status == 201){
-                console.log('Cadastro Correto')  
-                console.log(response)
-                console.log(data) 
-                window.location.reload();         
+                    const response = await fetch("https://api-microerp.herokuapp.com/api/Produtos/")
+                    let req = await response.json()
+                    this.produtos = req.sort(function(a, b) {                  
+                                        return b.id - a.id ;
+                                        }); 
+                          
             }
             else{
                 console.log('Cadastro Invalido')

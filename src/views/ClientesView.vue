@@ -62,7 +62,7 @@
                 </div>
                 <!-- Fim Modal Novo Cliente-->
             </div>
-          
+    
             <div class="row mt-1" >
                 <div class="col-lg-3 col-md-4 col-sm-6 mt-1" v-for="cadastro in cliente" :key="cadastro.id">
                            

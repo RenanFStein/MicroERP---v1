@@ -1,5 +1,15 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
+import AboutView from '../views/AboutView.vue'
+import ComprasView from '../views/ComprasView.vue'
+import ContasView from '../views/ContasView.vue'
+import DashboardView from '../views/DashboardView.vue'
+import FornecedorView from '../views/FornecedorView.vue'
+import ClientesView from '../views/ClientesView.vue'
+import ProdutosView from '../views/ProdutosView.vue'
+import VendasView from '../views/VendasView.vue'
+
+
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -12,42 +22,42 @@ const router = createRouter({
     {
       path: '/about',
       name: 'about',
-      component: () => import('../views/AboutView.vue')
+      component: AboutView
     },
     {
       path: '/compras',
       name: 'compras',
-      component: () => import('../views/ComprasView.vue')
+      component: ComprasView
     },
     {
       path: '/contas',
       name: 'contas',
-      component: () => import('../views/ContasView.vue')
+      component: ContasView
     },
     {
       path: '/dashboard',
       name: 'dashboard',
-      component: () => import('../views/DashboardView.vue')
+      component: DashboardView
     },
     {
       path: '/fornecedor',
       name: 'fornecedor',
-      component: () => import('../views/FornecedorView.vue')
+      component: FornecedorView
     },
     {
       path: '/clientes',
       name: 'clientes',
-      component: () => import('../views/ClientesView.vue')
+      component: ClientesView
     },
     {
       path: '/produtos',
       name: 'produtos',
-      component: () => import('../views/ProdutosView.vue')
+      component: ProdutosView
     },
     {
       path: '/vendas',
       name: 'vendas',
-      component: () => import('../views/VendasView.vue')
+      component: VendasView
     },
   ]
 })
