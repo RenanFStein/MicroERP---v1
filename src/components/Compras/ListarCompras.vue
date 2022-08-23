@@ -1,18 +1,20 @@
 <template>
-    <div>
-        <div class="card border-warning  mb-3  shadow">
-            <div class="card-body">
+    <div class="container">
+        <div class="row mt-2">
+        <div class="col-lg-3 col-md-4 col-sm-6 mt-1 "  v-for="cadastro in this.$store.state.compras" :key="cadastro.id">
+        <div class="card border-warning  mb-3  shadow" >
+            <div class="card-body" >
                 <p class="card-text">Compra:{{ cadastro.id }}</p>
                 <p class="card-text">Fornecedor:{{ cadastro.nome_fornecedor.fornecedor }}</p>
-                <p class="card-text">Produto: {{ cadastro.produto.produto }}</p>
-                <p class="card-text">Valor: {{ formatPrice(cadastro.valor) }}</p>
-                <p class="card-text">Quantidade: {{ cadastro.quantidade }}</p>
+                <p class="card-text">Produto: {{cadastro.produto.produto }}</p>
+                <p class="card-text">Valor: {{ formatPrice(Math.abs(cadastro.valor)) }}</p>
+                <p class="card-text">Quantidade: {{ Math.abs(cadastro.quantidade) }}</p>
 
             </div>
             <div class="card-footer bg-transparent border-warning">
 
                 <div class=" d-flex flex-wrap justify-content-between align-self-end ">
-                    <p class="card-text">Total: {{ formatPrice(cadastro.valor * cadastro.quantidade) }}</p>
+                    <p class="card-text">Total: {{ formatPrice(Math.abs(cadastro.valor * cadastro.quantidade)) }}</p>
                     <button type="submit" class="btn btn-sm btn-outline-success p-1 rounded-5 " data-bs-toggle="modal"
                         :data-bs-target="'#editarCompra' + cadastro.id">
                         <i class="fa-solid fa-pen-to-square p-2"></i>
@@ -21,7 +23,11 @@
                 </div>
             </div>
         </div>
-        <!-- Modal Editar Compra -->
+        </div>
+        </div>
+        <!-- Modal Editar Compra -->        
+         <div class="row mt-1" v-for="cadastro in this.$store.state.compras" :key="cadastro.id">
+        <div class="col-lg-3 col-md-4 col-sm-6 mt-1" >
         <div class="modal fade" :id="'editarCompra' + cadastro.id" data-bs-backdrop="static" data-bs-keyboard="false"
             tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered">
@@ -35,7 +41,7 @@
                                 <div class="col-lg-12 col-md-12 col-sm-12 col-12 mt-1">
                                     <select class="form-select" v-model="cadastro.nome_fornecedor.fornecedor">
                                         <option :value="(fornecedor.nome_fornecedor)" :data-idfornedor="fornecedor.id"
-                                            v-for="fornecedor in fornecedores" :key="fornecedor.id" selected>
+                                            v-for="fornecedor in this.$store.state.fornecedores" :key="fornecedor.id" selected>
                                             {{ fornecedor.nome_fornecedor }}
                                         </option>
                                     </select>
@@ -45,7 +51,7 @@
                                 <div class="col-lg-8 col-md-8 col-sm-8 col-7 mt-1">
                                     <select class="form-select" v-model="cadastro.produto.produto">
                                         <option :value="produto.nomeProduto" :data-idproduto="produto.id"
-                                            v-for="produto in produtos" :key="produto.id" selected>
+                                            v-for="produto in this.$store.state.produtos" :key="produto.id" selected>
                                             {{ produto.nomeProduto }}
 
                                         </option>
@@ -53,16 +59,18 @@
                                     </select>
                                 </div>
                                 <div class="col-lg-4 col-md-4 col-sm-4 col-5 mt-1">
-                                    <input type="number" class="form-control mt-2" min="1" placeholder="Valor"
-                                        v-model="cadastro.valor">
+                                    <input type="number" class="form-control mt-2" min="1" placeholder="Valor"                                        
+                                        :value="cadastro.valor"
+                                         @input="event => cadastro.valor = Math.abs(event.target.value)">    
                                 </div>
                                 <div class="col-lg-5 col-md-5 col-sm-5 col-5 mt-1">
-                                    <input type="number" class="form-control mt-2" min="1" placeholder="Quantidade"
-                                        v-model="cadastro.quantidade">
+                                    <input type="number" class="form-control mt-2" min="1" placeholder="Quantidade"                                        
+                                        :value="cadastro.quantidade"
+                                        @input="event => cadastro.quantidade = Math.abs(event.target.value)">    
                                 </div>
                                 <div class="col-lg-7 col-md-7 col-sm-7 col-7 mt-1">
                                     <input type="number" class="form-control mt-2" disabled placeholder="Total"
-                                        :value="cadastro.valor * cadastro.quantidade">
+                                        :value="Math.abs(cadastro.valor * cadastro.quantidade)">
                                 </div>
                             </div>
                         </div>
@@ -79,21 +87,16 @@
                 </form>
             </div>
         </div>
+        </div>
+         </div>
         <!-- Fim Modal Editar Compra-->
     </div>
 
 </template>
 
 <script>
-export default {
-    props:{       
-        cadastro: Object, 
-        fornecedores: Object,
-        produtos: Object, 
-        compras: Object,
-        cadastroCompras: Object     
-    },
-    methods:{
+export default { 
+    methods:{     
             async updateCompra(cadastro, $event) {
                 const atualiza = {
                     fornecedor:
@@ -117,15 +120,16 @@ export default {
                 const response = await fetch(
                     "https://api-microerp.herokuapp.com/api/Compras/" + cadastro.id + "/",
                     requestOptions
-                );
+                );        
                 console.log(response)
                 const data = await response.json();
-                console.log(data)
                 },
-
+        
             formatPrice(value) {
             let val = (value / 1).toFixed(2).replace(".", ",");
             return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+
+
     }
     }
 }

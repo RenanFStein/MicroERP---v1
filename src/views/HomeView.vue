@@ -95,17 +95,17 @@
                     },
             }
     },  
-    async created () {
-        
+    async created () {        
             const response = await fetch("https://api-microerp.herokuapp.com/api/Empresa/")
             let req = await response.json()
-            this.empresa = req[0]                
-           
-        },  
-                                                                                        
+            this.empresa = req[0]               
+        },                                                                                         
         
     methods:{    
-        
+        mouseleave($event){
+            console.log($event)
+            console.log('ola')
+        },
         editarEmpresa() {
             this.editar_empresa = !this.editar_empresa
             this.atualizar_empresa = !this.atualizar_empresa
