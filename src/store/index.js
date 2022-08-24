@@ -20,8 +20,27 @@ const store =  createStore({
           valor: ""
         }
       },
-      fornecedores: {},
-      produtos: {},
+    fornecedores: {},
+    produtos: {},
+    
+    vendas: "",
+    editarVendas: {
+                cliente: "",
+                estoque: {
+                    produto: "",
+                    quantidade: "",
+                    valor: "",
+                },
+            },
+    cadastroVendas: {
+                cliente: "",
+                estoque: {
+                    produto: "",
+                    quantidade: "",
+                    valor: "",
+                },
+            },
+    clientes: "",
   
   },
   mutations: {
